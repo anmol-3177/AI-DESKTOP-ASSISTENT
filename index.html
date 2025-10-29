@@ -1,0 +1,70 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>AI Desktop Assistant</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <header>
+      <div>
+        <h1>AI Desktop Assistant</h1>
+        <p>Multilanguage · Voice commands · Online server</p>
+      </div>
+      <div class="server-status">
+        <span>Server Status:</span>
+        <span id="serverStatus" class="status error">error</span>
+        <select id="languageSelect">
+          <option value="en">English</option>
+          <option value="hi">हिन्दी</option>
+          <option value="bh">भोजपुरी</option>
+        </select>
+      </div>
+    </header>
+
+    <main>
+      <section class="command-input">
+        <p>Say something like: <b>"Open YouTube"</b> or <b>"Search weather in Delhi"</b></p>
+        <div class="input-area">
+          <button id="startBtn">Start Listening</button>
+          <input type="text" id="userInput" placeholder='Type or speak your command'>
+          <button id="sendBtn" class="send">Send</button>
+          <button id="speakBtn" class="speak">🔊</button>
+        </div>
+        <small>Quick commands: "open youtube", "play music", "search weather in &lt;city&gt;", "send email to &lt;name&gt;"</small>
+      </section>
+
+      <section class="history">
+        <h3>Command History</h3>
+        <div id="historyList"></div>
+      </section>
+
+      <aside class="sidebar">
+        <h3>Integrations</h3>
+        <ul>
+          <li>OpenAI / LLMs (server-side) - for NLP & intent parsing</li>
+          <li>YouTube / Spotify APIs - play media</li>
+          <li>Browser control (open tabs, search) - local electron/native bridge</li>
+          <li>Smart home (MQTT / Home Assistant)</li>
+        </ul>
+
+        <h3>Server endpoints (examples)</h3>
+        <pre>
+POST /api/command - body: {text, lang}
+WS   /ws - JSON messages for low-latency replies
+GET  /health - returns server health
+        </pre>
+        <p class="note">
+          Recommended backend: Node.js + Express + Socket.IO (or Flask).<br>
+          Deploy on Railway, Render, or DigitalOcean.
+        </p>
+      </aside>
+    </main>
+  </div>
+
+  <script src="script.js"></script>
+</body>
+</html>
